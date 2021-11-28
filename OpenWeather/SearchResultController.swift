@@ -87,10 +87,16 @@ final class SearchResultController: UISearchController {
 
     private func bindOutput() {
         state.searchText
-            .debounce(.seconds(1), scheduler: MainScheduler.instance)
+            .debounce(.microseconds(500), scheduler: MainScheduler.instance)
             .filter { !$0.isEmpty }
             .withUnretained(self)
-            .flatMapLatest { `self`, text in self.placesOfName(text) }
+            .flatMapLatest { `self`, text -> Observable<[CLPlacemark]> in
+                if Defaults.searchMode == .cityName {
+                    return self.placesOfName(text)
+                } else {
+                    return self.placesOfZip(text)
+                }
+            }
             .bind(to: state.locations)
             .disposed(by: bag)
 
@@ -134,7 +140,10 @@ final class SearchResultController: UISearchController {
                     }
                 }
                 if let error = error {
-                    observer.onError(error)
+                    print("search zip error", error)
+                    //                    observer.onError(error)
+                    observer.onNext([])
+                    observer.onCompleted()
                 }
             }
             return Disposables.create()

@@ -88,9 +88,19 @@ final class MainViewController: UIViewController {
             .debug()
             .bind(to: state.weathers)
             .disposed(by: bag)
+
+        tableView.rx.itemDeleted
+            .bind {
+                Defaults.selectedLocations.remove(at: $0.row)
+            }
+            .disposed(by: bag)
     }
 
     private func bindOutput() {
+        event.settingTapped
+            .bind(with: self) { `self`, _ in self.showSettingAlert() }
+            .disposed(by: bag)
+
         Defaults.observe(\.searchMode)
             .bind(with: searchController) {
                 switch $1.newValue {
@@ -102,46 +112,31 @@ final class MainViewController: UIViewController {
             }
             .disposed(by: bag)
 
-//        event.selectedPlace
-//            .debounce(.seconds(1), scheduler: MainScheduler.instance)
-//            .flatMapLatest { _ in
-//                API.rx.request(.forecast(id: 524901)).map { _ in }
-//            }
-//            .materialize()
-//            .bind { res in
-//                switch res {
-//                case let .next(element):
-//
-//                    print("result get")
-//                default: print("Error")
-//                }
-//            }
-//            .disposed(by: bag)
-
         event.selectedPlace
-            .do(onNext: {
+            .bind {
                 Defaults.selectedLocations = (Defaults.selectedLocations + [$0])
                     .withoutDuplicates(keyPath: \.name)
-            })
-            .flatMapLatest { place in
-                API.rx.request(.weatherOfCityName(place.name!))
-            }
-            .materialize()
-            .bind { res in
-                switch res {
-                case let .next(element):
-
-                    print("result get")
-                default: print("Error")
-                }
             }
             .disposed(by: bag)
-
 
         state.weathers
             .map { [Section(model: "", items: $0)] }
             .bind(to: tableView.rx.items(dataSource: dataSource))
             .disposed(by: bag)
+    }
+
+    private func showSettingAlert() {
+        let alert = UIAlertController()
+        let zip = UIAlertAction(title: "Search By Zip", style: .default) { _ in
+            Defaults.searchMode = .zipCode
+        }
+        alert.addAction(zip)
+        let cityName = UIAlertAction(title: "Search by City name", style: .default) { _ in
+            Defaults.searchMode = .cityName
+        }
+
+        alert.addAction(cityName)
+        present(alert, animated: true)
     }
 }
 
