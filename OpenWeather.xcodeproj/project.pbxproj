@@ -16,6 +16,18 @@
 		078D139E2753A4320048D6B5 /* OpenWeatherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078D139D2753A4320048D6B5 /* OpenWeatherTests.swift */; };
 		078D13A82753A4320048D6B5 /* OpenWeatherUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078D13A72753A4320048D6B5 /* OpenWeatherUITests.swift */; };
 		078D13AA2753A4320048D6B5 /* OpenWeatherUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078D13A92753A4320048D6B5 /* OpenWeatherUITestsLaunchTests.swift */; };
+		078D13B82753A6C80048D6B5 /* MoyaSugar in Frameworks */ = {isa = PBXBuildFile; productRef = 078D13B72753A6C80048D6B5 /* MoyaSugar */; };
+		078D13BE2753A78F0048D6B5 /* SwifterSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 078D13BD2753A78F0048D6B5 /* SwifterSwift */; };
+		078D13C12753A8040048D6B5 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 078D13C02753A8040048D6B5 /* SnapKit */; };
+		078D13C42753A9570048D6B5 /* SwiftyUserDefaults in Frameworks */ = {isa = PBXBuildFile; productRef = 078D13C32753A9570048D6B5 /* SwiftyUserDefaults */; };
+		078D13C72753A9760048D6B5 /* OpenWeatherTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078D13C62753A9760048D6B5 /* OpenWeatherTarget.swift */; };
+		078D13CA2753AA4B0048D6B5 /* OpenWeatherTargetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078D13C92753AA4B0048D6B5 /* OpenWeatherTargetTests.swift */; };
+		078D13CD2753ADBC0048D6B5 /* Atlantis in Frameworks */ = {isa = PBXBuildFile; productRef = 078D13CC2753ADBC0048D6B5 /* Atlantis */; };
+		078D13D02753AFA40048D6B5 /* RxMoya in Frameworks */ = {isa = PBXBuildFile; productRef = 078D13CF2753AFA40048D6B5 /* RxMoya */; };
+		078D13D32753B0BA0048D6B5 /* ForecastResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = 078D13D22753B0BA0048D6B5 /* ForecastResponse.json */; };
+		078D13D62753B0F80048D6B5 /* Forecast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078D13D52753B0F80048D6B5 /* Forecast.swift */; };
+		078D13D92753B1F60048D6B5 /* BackedCodable in Frameworks */ = {isa = PBXBuildFile; productRef = 078D13D82753B1F60048D6B5 /* BackedCodable */; };
+		078D13DC2753BAF30048D6B5 /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = 078D13DB2753BAF30048D6B5 /* Then */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +61,10 @@
 		078D13A32753A4320048D6B5 /* OpenWeatherUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OpenWeatherUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		078D13A72753A4320048D6B5 /* OpenWeatherUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenWeatherUITests.swift; sourceTree = "<group>"; };
 		078D13A92753A4320048D6B5 /* OpenWeatherUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenWeatherUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		078D13C62753A9760048D6B5 /* OpenWeatherTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenWeatherTarget.swift; sourceTree = "<group>"; };
+		078D13C92753AA4B0048D6B5 /* OpenWeatherTargetTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenWeatherTargetTests.swift; sourceTree = "<group>"; };
+		078D13D22753B0BA0048D6B5 /* ForecastResponse.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = ForecastResponse.json; sourceTree = "<group>"; };
+		078D13D52753B0F80048D6B5 /* Forecast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Forecast.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +72,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				078D13D02753AFA40048D6B5 /* RxMoya in Frameworks */,
+				078D13D92753B1F60048D6B5 /* BackedCodable in Frameworks */,
+				078D13C12753A8040048D6B5 /* SnapKit in Frameworks */,
+				078D13DC2753BAF30048D6B5 /* Then in Frameworks */,
+				078D13BE2753A78F0048D6B5 /* SwifterSwift in Frameworks */,
+				078D13CD2753ADBC0048D6B5 /* Atlantis in Frameworks */,
+				078D13B82753A6C80048D6B5 /* MoyaSugar in Frameworks */,
+				078D13C42753A9570048D6B5 /* SwiftyUserDefaults in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -99,6 +123,8 @@
 		078D13852753A4300048D6B5 /* OpenWeather */ = {
 			isa = PBXGroup;
 			children = (
+				078D13D42753B0E90048D6B5 /* Models */,
+				078D13C52753A9650048D6B5 /* Services */,
 				078D13862753A4300048D6B5 /* AppDelegate.swift */,
 				078D13882753A4300048D6B5 /* SceneDelegate.swift */,
 				078D138A2753A4300048D6B5 /* ViewController.swift */,
@@ -114,6 +140,7 @@
 			isa = PBXGroup;
 			children = (
 				078D139D2753A4320048D6B5 /* OpenWeatherTests.swift */,
+				078D13C82753AA370048D6B5 /* Services */,
 			);
 			path = OpenWeatherTests;
 			sourceTree = "<group>";
@@ -125,6 +152,39 @@
 				078D13A92753A4320048D6B5 /* OpenWeatherUITestsLaunchTests.swift */,
 			);
 			path = OpenWeatherUITests;
+			sourceTree = "<group>";
+		};
+		078D13C52753A9650048D6B5 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				078D13C62753A9760048D6B5 /* OpenWeatherTarget.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		078D13C82753AA370048D6B5 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				078D13C92753AA4B0048D6B5 /* OpenWeatherTargetTests.swift */,
+				078D13D12753B09F0048D6B5 /* SampleData */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		078D13D12753B09F0048D6B5 /* SampleData */ = {
+			isa = PBXGroup;
+			children = (
+				078D13D22753B0BA0048D6B5 /* ForecastResponse.json */,
+			);
+			path = SampleData;
+			sourceTree = "<group>";
+		};
+		078D13D42753B0E90048D6B5 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				078D13D52753B0F80048D6B5 /* Forecast.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -143,6 +203,16 @@
 			dependencies = (
 			);
 			name = OpenWeather;
+			packageProductDependencies = (
+				078D13B72753A6C80048D6B5 /* MoyaSugar */,
+				078D13BD2753A78F0048D6B5 /* SwifterSwift */,
+				078D13C02753A8040048D6B5 /* SnapKit */,
+				078D13C32753A9570048D6B5 /* SwiftyUserDefaults */,
+				078D13CC2753ADBC0048D6B5 /* Atlantis */,
+				078D13CF2753AFA40048D6B5 /* RxMoya */,
+				078D13D82753B1F60048D6B5 /* BackedCodable */,
+				078D13DB2753BAF30048D6B5 /* Then */,
+			);
 			productName = OpenWeather;
 			productReference = 078D13832753A4300048D6B5 /* OpenWeather.app */;
 			productType = "com.apple.product-type.application";
@@ -215,6 +285,16 @@
 				Base,
 			);
 			mainGroup = 078D137A2753A4300048D6B5;
+			packageReferences = (
+				078D13B62753A6C80048D6B5 /* XCRemoteSwiftPackageReference "MoyaSugar" */,
+				078D13BC2753A78F0048D6B5 /* XCRemoteSwiftPackageReference "SwifterSwift" */,
+				078D13BF2753A8040048D6B5 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				078D13C22753A9570048D6B5 /* XCRemoteSwiftPackageReference "SwiftyUserDefaults" */,
+				078D13CB2753ADBC0048D6B5 /* XCRemoteSwiftPackageReference "atlantis" */,
+				078D13CE2753AFA40048D6B5 /* XCRemoteSwiftPackageReference "Moya" */,
+				078D13D72753B1F60048D6B5 /* XCRemoteSwiftPackageReference "BackedCodable" */,
+				078D13DA2753BAF30048D6B5 /* XCRemoteSwiftPackageReference "Then" */,
+			);
 			productRefGroup = 078D13842753A4300048D6B5 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -241,6 +321,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				078D13D32753B0BA0048D6B5 /* ForecastResponse.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -261,6 +342,8 @@
 				078D138B2753A4300048D6B5 /* ViewController.swift in Sources */,
 				078D13872753A4300048D6B5 /* AppDelegate.swift in Sources */,
 				078D13892753A4300048D6B5 /* SceneDelegate.swift in Sources */,
+				078D13C72753A9760048D6B5 /* OpenWeatherTarget.swift in Sources */,
+				078D13D62753B0F80048D6B5 /* Forecast.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -269,6 +352,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				078D139E2753A4320048D6B5 /* OpenWeatherTests.swift in Sources */,
+				078D13CA2753AA4B0048D6B5 /* OpenWeatherTargetTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -442,6 +526,7 @@
 				DEVELOPMENT_TEAM = 66D3CJTRN4;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = OpenWeather/Info.plist;
+				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "Atlantis would use Bonjour Service to discover Proxyman app from your local network.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -470,6 +555,7 @@
 				DEVELOPMENT_TEAM = 66D3CJTRN4;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = OpenWeather/Info.plist;
+				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "Atlantis would use Bonjour Service to discover Proxyman app from your local network.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -624,6 +710,116 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		078D13B62753A6C80048D6B5 /* XCRemoteSwiftPackageReference "MoyaSugar" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/erichsu/MoyaSugar";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+		078D13BC2753A78F0048D6B5 /* XCRemoteSwiftPackageReference "SwifterSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwifterSwift/SwifterSwift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.2.0;
+			};
+		};
+		078D13BF2753A8040048D6B5 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+		078D13C22753A9570048D6B5 /* XCRemoteSwiftPackageReference "SwiftyUserDefaults" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sunshinejr/SwiftyUserDefaults";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+		078D13CB2753ADBC0048D6B5 /* XCRemoteSwiftPackageReference "atlantis" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ProxymanApp/atlantis";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+		078D13CE2753AFA40048D6B5 /* XCRemoteSwiftPackageReference "Moya" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Moya/Moya";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+		078D13D72753B1F60048D6B5 /* XCRemoteSwiftPackageReference "BackedCodable" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/jegnux/BackedCodable";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.1.1;
+			};
+		};
+		078D13DA2753BAF30048D6B5 /* XCRemoteSwiftPackageReference "Then" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/devxoul/Then";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		078D13B72753A6C80048D6B5 /* MoyaSugar */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 078D13B62753A6C80048D6B5 /* XCRemoteSwiftPackageReference "MoyaSugar" */;
+			productName = MoyaSugar;
+		};
+		078D13BD2753A78F0048D6B5 /* SwifterSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 078D13BC2753A78F0048D6B5 /* XCRemoteSwiftPackageReference "SwifterSwift" */;
+			productName = SwifterSwift;
+		};
+		078D13C02753A8040048D6B5 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 078D13BF2753A8040048D6B5 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+		078D13C32753A9570048D6B5 /* SwiftyUserDefaults */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 078D13C22753A9570048D6B5 /* XCRemoteSwiftPackageReference "SwiftyUserDefaults" */;
+			productName = SwiftyUserDefaults;
+		};
+		078D13CC2753ADBC0048D6B5 /* Atlantis */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 078D13CB2753ADBC0048D6B5 /* XCRemoteSwiftPackageReference "atlantis" */;
+			productName = Atlantis;
+		};
+		078D13CF2753AFA40048D6B5 /* RxMoya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 078D13CE2753AFA40048D6B5 /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = RxMoya;
+		};
+		078D13D82753B1F60048D6B5 /* BackedCodable */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 078D13D72753B1F60048D6B5 /* XCRemoteSwiftPackageReference "BackedCodable" */;
+			productName = BackedCodable;
+		};
+		078D13DB2753BAF30048D6B5 /* Then */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 078D13DA2753BAF30048D6B5 /* XCRemoteSwiftPackageReference "Then" */;
+			productName = Then;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 078D137B2753A4300048D6B5 /* Project object */;
 }
