@@ -14,15 +14,18 @@ let API = MoyaSugarProvider<OpenWeatherTarget>()
 
 enum OpenWeatherTarget: SugarTargetType {
     case forecast(id: Int)
+    case weatherOfZip(Int, String)
+    case weatherOfCityName(String)
 
     // MARK: Internal
 
     static let apiKey = "95d190a434083879a6398aafd54d9e73"
 
-    
     var route: Route {
         switch self {
         case .forecast: return .get("/forecast")
+        case .weatherOfZip: return .get("/weather")
+        case .weatherOfCityName: return .get("/weather")
         }
     }
 
@@ -31,7 +34,20 @@ enum OpenWeatherTarget: SugarTargetType {
         case .forecast(let id):
             return URLEncoding() => [
                 "id": id,
-                "appid": OpenWeatherTarget.apiKey
+                "appid": OpenWeatherTarget.apiKey,
+                "lang": Locale.current.identifier
+            ]
+        case let .weatherOfZip(zip, country):
+            return URLEncoding() => [
+                "zip": "\(zip),\(country)",
+                "appid": OpenWeatherTarget.apiKey,
+                "lang": Locale.current.identifier
+            ]
+        case .weatherOfCityName(let cityName):
+            return URLEncoding() => [
+                "q": cityName,
+                "appid": OpenWeatherTarget.apiKey,
+                "lang": Locale.current.identifier
             ]
         }
     }

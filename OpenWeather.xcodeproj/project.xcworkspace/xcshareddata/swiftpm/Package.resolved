@@ -65,12 +65,30 @@
         }
       },
       {
+        "package": "RxDataSources",
+        "repositoryURL": "https://github.com/RxSwiftCommunity/RxDataSources",
+        "state": {
+          "branch": null,
+          "revision": "90c29b48b628479097fe775ed1966d75ac374518",
+          "version": "5.0.2"
+        }
+      },
+      {
         "package": "RxSwift",
         "repositoryURL": "https://github.com/ReactiveX/RxSwift.git",
         "state": {
           "branch": null,
           "revision": "7c17a6ccca06b5c107cfa4284e634562ddaf5951",
           "version": "6.2.0"
+        }
+      },
+      {
+        "package": "RxSwiftExt",
+        "repositoryURL": "https://github.com/RxSwiftCommunity/RxSwiftExt",
+        "state": {
+          "branch": null,
+          "revision": "a42af9caeab63f2dbde318f1f3dc424f05871a37",
+          "version": "6.1.0"
         }
       },
       {
@@ -98,6 +116,15 @@
           "branch": null,
           "revision": "f66bcd04088582c8fbb5cb8554d577e303bae396",
           "version": "5.3.0"
+        }
+      },
+      {
+        "package": "Then",
+        "repositoryURL": "https://github.com/devxoul/Then",
+        "state": {
+          "branch": null,
+          "revision": "e421a7b3440a271834337694e6050133a3958bc7",
+          "version": "2.7.0"
         }
       }
     ]
