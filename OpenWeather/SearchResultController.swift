@@ -32,7 +32,6 @@ final class SearchResultController: UISearchController {
         bindOutput()
     }
 
-
     // MARK: Private
 
     private let bag = DisposeBag()
@@ -125,9 +124,13 @@ final class SearchResultController: UISearchController {
             .disposed(by: bag)
 
         let currentLocation = Section(model: "", items: [.gps])
-        let historySection = Defaults.observe(\.searchRecords)
+        let historySection: Observable<Section?> = Defaults.observe(\.searchRecords)
             .compactMap { $0.newValue }
-            .map { Section(model: "Recent Search", items: $0.map(Item.history)) }
+            .map {
+                $0.isEmpty
+                    ? nil
+                    : Section(model: "Recent Search", items: $0.map(Item.history))
+            }
 
         let suggestionSection = state.locations
             .withUnretained(self)
@@ -137,7 +140,7 @@ final class SearchResultController: UISearchController {
 
         Observable
             .combineLatest(historySection, suggestionSection)
-            .map { [currentLocation, $0, $1] }
+            .map { [currentLocation, $0, $1].compactMap { $0 } }
             .bind(to: tableView.rx.items(dataSource: dataSource))
             .disposed(by: bag)
 
@@ -234,6 +237,7 @@ private final class SearchCell: UITableViewCell {
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        selectionStyle = .none
         contentView.addSubviews([titleLabel])
         titleLabel.snp.makeConstraints {
             $0.edges.equalToSuperview().inset(UIEdgeInsets(horizontal: 32, vertical: 0))
