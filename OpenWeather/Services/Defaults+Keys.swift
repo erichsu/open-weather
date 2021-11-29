@@ -11,7 +11,6 @@ import RxSwift
 import SwiftyUserDefaults
 
 extension DefaultsKeys {
-    var searchMode: DefaultsKey<SearchMode> { .init("searchMode", defaultValue: .zipCode) }
     var searchRecords: DefaultsKey<[String]> { .init("searchRecords", defaultValue: []) }
     var selectedLocations: DefaultsKey<[CLPlacemark]> { .init("selectedLocations", defaultValue: []) }
 }
@@ -19,10 +18,6 @@ extension DefaultsKeys {
 // MARK: - CLPlacemark + DefaultsSerializable
 
 extension CLPlacemark: DefaultsSerializable {}
-
-// MARK: - SearchMode + DefaultsSerializable
-
-extension SearchMode: DefaultsSerializable {}
 
 extension DefaultsAdapter {
     func observe<T: DefaultsSerializable>(_ key: DefaultsKey<T>,

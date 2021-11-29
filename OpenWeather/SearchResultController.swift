@@ -83,19 +83,29 @@ final class SearchResultController: UISearchController {
             }
             .bind(to: event.placeSelected)
             .disposed(by: bag)
+
+        tableView.rx.modelSelected(Section.Item.self)
+            .compactMap {
+                guard case .history(let text) = $0 else { return nil }
+                return text
+            }
+            .bind(to: state.searchText)
+            .disposed(by: bag)
     }
 
     private func bindOutput() {
+        state.searchText
+            .bind(to: searchBar.rx.text)
+            .disposed(by: bag)
+
         state.searchText
             .debounce(.microseconds(500), scheduler: MainScheduler.instance)
             .filter { !$0.isEmpty }
             .withUnretained(self)
             .flatMapLatest { `self`, text -> Observable<[CLPlacemark]> in
-                if Defaults.searchMode == .cityName {
-                    return self.placesOfName(text)
-                } else {
-                    return self.placesOfZip(text)
-                }
+                Observable
+                    .combineLatest(self.placesOfName(text), self.placesOfZip(text))
+                    .map { $0 + $1 }
             }
             .bind(to: state.locations)
             .disposed(by: bag)
@@ -232,7 +242,10 @@ private final class SearchCell: UITableViewCell {
         case .history(let title):
             titleLabel.text = title
         case .place(let place, let search):
-            titleLabel.attributedText = NSAttributedString(string: place.name ?? "")
+            let text = [place.postalCode, place.locality ?? place.subLocality ?? place.name, place.isoCountryCode]
+                .compactMap { $0 }
+                .joined(separator: ", ")
+            titleLabel.attributedText = NSAttributedString(string: text)
                 .applying(attributes: [.font: UIFont.boldSystemFont(ofSize: 17)], toOccurrencesOf: search)
         }
     }

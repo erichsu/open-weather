@@ -59,6 +59,7 @@ final class MainViewController: UIViewController {
         title = "Weather"
         navigationItem.searchController = searchController
         navigationItem.rightBarButtonItem = settingBarItem
+        searchController.searchBar.placeholder = "Search city name or zip code"
 
         view.addSubviews([tableView])
         tableView.snp.makeConstraints {
@@ -85,7 +86,6 @@ final class MainViewController: UIViewController {
                 }
                 return Observable.combineLatest(requests)
             }
-            .debug()
             .bind(to: state.weathers)
             .disposed(by: bag)
 
@@ -101,20 +101,9 @@ final class MainViewController: UIViewController {
             .bind(with: self) { `self`, _ in self.showSettingAlert() }
             .disposed(by: bag)
 
-        Defaults.observe(\.searchMode)
-            .bind(with: searchController) {
-                switch $1.newValue {
-                case .cityName?:
-                    $0.searchBar.placeholder = "Search by City Name"
-                default:
-                    $0.searchBar.placeholder = "Search by Zip code"
-                }
-            }
-            .disposed(by: bag)
-
         event.selectedPlace
             .bind {
-                Defaults.selectedLocations = (Defaults.selectedLocations + [$0])
+                Defaults.selectedLocations = ([$0] + Defaults.selectedLocations)
                     .withoutDuplicates(keyPath: \.name)
             }
             .disposed(by: bag)
@@ -127,15 +116,7 @@ final class MainViewController: UIViewController {
 
     private func showSettingAlert() {
         let alert = UIAlertController()
-        let zip = UIAlertAction(title: "Search By Zip", style: .default) { _ in
-            Defaults.searchMode = .zipCode
-        }
-        alert.addAction(zip)
-        let cityName = UIAlertAction(title: "Search by City name", style: .default) { _ in
-            Defaults.searchMode = .cityName
-        }
 
-        alert.addAction(cityName)
         present(alert, animated: true)
     }
 }
