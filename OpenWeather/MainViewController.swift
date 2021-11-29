@@ -52,8 +52,14 @@ final class MainViewController: UIViewController {
         action: nil
     )
 
+    private lazy var placeholder = UILabel(text: "No data\nplease add weather via search bar ↑").then {
+        $0.textAlignment = .center
+        $0.numberOfLines = 0
+    }
+
     private lazy var tableView = UITableView(frame: .zero, style: .insetGrouped).then {
         $0.register(cellWithClass: MainCell.self)
+        $0.backgroundView = placeholder
     }
 
     private func setupSubviews() {
@@ -117,12 +123,16 @@ final class MainViewController: UIViewController {
             .map { [Section(model: "", items: $0)] }
             .bind(to: tableView.rx.items(dataSource: dataSource))
             .disposed(by: bag)
+
+        state.weathers
+            .map(\.isEmpty).not()
+            .bind(to: placeholder.rx.isHidden)
+            .disposed(by: bag)
     }
 
     private func showSettingAlert() {
         let alert = UIAlertController()
 
-        
         present(alert, animated: true)
     }
 }
@@ -182,6 +192,7 @@ private final class MainCell: UITableViewCell {
     private lazy var titleLabel = UILabel().then {
         $0.textColor = Theme.current.textColor
     }
+
     private lazy var weatherInfo = UILabel()
     private lazy var mainInfo = UILabel()
 }
