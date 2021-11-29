@@ -46,13 +46,6 @@ final class MainViewController: UIViewController {
         }
     )
 
-    private lazy var settingBarItem = UIBarButtonItem(
-        image: UIImage(systemName: "gear"),
-        style: .plain,
-        target: nil,
-        action: nil
-    )
-
     private lazy var placeholder = UILabel(text: "No data\nplease add weather via search bar ↑").then {
         $0.textAlignment = .center
         $0.numberOfLines = 0
@@ -66,7 +59,6 @@ final class MainViewController: UIViewController {
     private func setupSubviews() {
         title = "Weather"
         navigationItem.searchController = searchController
-        navigationItem.rightBarButtonItem = settingBarItem
         searchController.searchBar.placeholder = "Search city name or zip code"
 
         view.addSubviews([tableView])
@@ -76,9 +68,6 @@ final class MainViewController: UIViewController {
     }
 
     private func bindInput() {
-        settingBarItem.rx.tap
-            .bind(to: event.settingTapped)
-            .disposed(by: bag)
 
         searchController.event.placeSelected
             .bind(to: event.selectedPlace)
