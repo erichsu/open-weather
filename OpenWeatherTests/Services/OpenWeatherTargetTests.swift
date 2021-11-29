@@ -50,6 +50,38 @@ class OpenWeatherTargetTests: XCTestCase {
             .disposed(by: bag)
         waitForExpectations(timeout: 1, handler: nil)
     }
+
+    func testForecastResponseDecoder() throws {
+        let expect = expectation(description: "forecast response decoding should not fail")
+        stubbingProvider.rx.request(.forecast(id: 123))
+            .map([Forecast].self, atKeyPath: "list")
+            .subscribe(
+                onSuccess: { res in
+                    XCTAssertFalse(res.isEmpty)
+                    print(res)
+                    expect.fulfill()
+                },
+                onFailure: { XCTFail("\($0)") }
+            )
+            .disposed(by: bag)
+        waitForExpectations(timeout: 1, handler: nil)
+    }
+
+    func testWeatherOfCityNameResponseDecoder() throws {
+        let expect = expectation(description: "weather response decoding should not fail")
+        stubbingProvider.rx.request(.weatherOfCityName("Alto"))
+            .map(Weather.self)
+            .subscribe(
+                onSuccess: { res in
+                    XCTAssertFalse(res.name.isEmpty)
+                    print(res)
+                    expect.fulfill()
+                },
+                onFailure: { XCTFail("\($0)") }
+            )
+            .disposed(by: bag)
+        waitForExpectations(timeout: 1, handler: nil)
+    }
 }
 
 extension OpenWeatherTarget {
@@ -58,6 +90,12 @@ extension OpenWeatherTarget {
         switch self {
         case .forecast:
             let fileUrl = bundle.url(forResource: "ForecastResponse", withExtension: "json")
+            return try! Data(contentsOf: fileUrl!)
+        case .weatherOfCityName:
+            let fileUrl = bundle.url(forResource: "WeatherOfCityNameResponse", withExtension: "json")
+            return try! Data(contentsOf: fileUrl!)
+        case .weatherOfZip:
+            let fileUrl = bundle.url(forResource: "WeatherOfCityNameResponse", withExtension: "json")
             return try! Data(contentsOf: fileUrl!)
         }
     }

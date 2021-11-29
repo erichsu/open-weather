@@ -1,0 +1,47 @@
+
+{
+    "coord": {
+        "lon": -95.0727,
+        "lat": 31.6505
+    },
+    "weather": [
+        {
+            "id": 800,
+            "main": "Clear",
+            "description": "clear sky",
+            "icon": "01d"
+        }
+    ],
+    "base": "stations",
+    "main": {
+        "temp": 293.2,
+        "feels_like": 292.54,
+        "temp_min": 291.96,
+        "temp_max": 293.84,
+        "pressure": 1020,
+        "humidity": 49,
+        "sea_level": 1020,
+        "grnd_level": 1004
+    },
+    "visibility": 10000,
+    "wind": {
+        "speed": 1.47,
+        "deg": 213,
+        "gust": 2.11
+    },
+    "clouds": {
+        "all": 0
+    },
+    "dt": 1638224338,
+    "sys": {
+        "type": 1,
+        "id": 4601,
+        "country": "US",
+        "sunrise": 1638190859,
+        "sunset": 1638227812
+    },
+    "timezone": -21600,
+    "id": 4670527,
+    "name": "Alto",
+    "cod": 200
+}

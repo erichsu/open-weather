@@ -11,6 +11,8 @@
 		0764FCF8275582DE000CC593 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0764FCFA275582DE000CC593 /* InfoPlist.strings */; };
 		0764FCFE275583E1000CC593 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0764FCFD275583E1000CC593 /* Theme.swift */; };
 		0764FD0127558910000CC593 /* ProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = 0764FD0027558910000CC593 /* ProgressHUD */; };
+		0764FD0427558BD1000CC593 /* OpenWeatherTargetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078D13C92753AA4B0048D6B5 /* OpenWeatherTargetTests.swift */; };
+		0764FD0627558D4E000CC593 /* WeatherOfCityNameResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = 0764FD0527558D4E000CC593 /* WeatherOfCityNameResponse.json */; };
 		078D13872753A4300048D6B5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078D13862753A4300048D6B5 /* AppDelegate.swift */; };
 		078D13892753A4300048D6B5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078D13882753A4300048D6B5 /* SceneDelegate.swift */; };
 		078D138B2753A4300048D6B5 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078D138A2753A4300048D6B5 /* MainViewController.swift */; };
@@ -25,7 +27,6 @@
 		078D13C12753A8040048D6B5 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 078D13C02753A8040048D6B5 /* SnapKit */; };
 		078D13C42753A9570048D6B5 /* SwiftyUserDefaults in Frameworks */ = {isa = PBXBuildFile; productRef = 078D13C32753A9570048D6B5 /* SwiftyUserDefaults */; };
 		078D13C72753A9760048D6B5 /* OpenWeatherTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078D13C62753A9760048D6B5 /* OpenWeatherTarget.swift */; };
-		078D13CA2753AA4B0048D6B5 /* OpenWeatherTargetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078D13C92753AA4B0048D6B5 /* OpenWeatherTargetTests.swift */; };
 		078D13CD2753ADBC0048D6B5 /* Atlantis in Frameworks */ = {isa = PBXBuildFile; productRef = 078D13CC2753ADBC0048D6B5 /* Atlantis */; };
 		078D13D02753AFA40048D6B5 /* RxMoya in Frameworks */ = {isa = PBXBuildFile; productRef = 078D13CF2753AFA40048D6B5 /* RxMoya */; };
 		078D13D32753B0BA0048D6B5 /* ForecastResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = 078D13D22753B0BA0048D6B5 /* ForecastResponse.json */; };
@@ -66,6 +67,7 @@
 		0764FCFB275582E0000CC593 /* en-AU */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU"; path = "en-AU.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		0764FCFC275582E1000CC593 /* en-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-CA"; path = "en-CA.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		0764FCFD275583E1000CC593 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		0764FD0527558D4E000CC593 /* WeatherOfCityNameResponse.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = WeatherOfCityNameResponse.json; sourceTree = "<group>"; };
 		078D13832753A4300048D6B5 /* OpenWeather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OpenWeather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		078D13862753A4300048D6B5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		078D13882753A4300048D6B5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -204,6 +206,7 @@
 			isa = PBXGroup;
 			children = (
 				078D13D22753B0BA0048D6B5 /* ForecastResponse.json */,
+				0764FD0527558D4E000CC593 /* WeatherOfCityNameResponse.json */,
 			);
 			path = SampleData;
 			sourceTree = "<group>";
@@ -364,6 +367,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0764FD0627558D4E000CC593 /* WeatherOfCityNameResponse.json in Resources */,
 				078D13D32753B0BA0048D6B5 /* ForecastResponse.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -399,7 +403,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				078D139E2753A4320048D6B5 /* OpenWeatherTests.swift in Sources */,
-				078D13CA2753AA4B0048D6B5 /* OpenWeatherTargetTests.swift in Sources */,
+				0764FD0427558BD1000CC593 /* OpenWeatherTargetTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
