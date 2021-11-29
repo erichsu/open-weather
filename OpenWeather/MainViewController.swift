@@ -156,6 +156,7 @@ private final class MainCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         contentView.backgroundColor = Theme.current.accentColor
+        selectionStyle = .none
         let contentStack = UIStackView(
             arrangedSubviews: [titleLabel, weatherInfo, mainInfo],
             axis: .vertical,
