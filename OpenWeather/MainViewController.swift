@@ -20,7 +20,7 @@ import UIKit
 final class MainViewController: UIViewController {
     // MARK: Internal
 
-    typealias Section = SectionModel<String, Weather>
+    typealias Section = SectionModel<String, Weather?>
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,7 +39,8 @@ final class MainViewController: UIViewController {
     private lazy var dataSource = RxTableViewSectionedReloadDataSource<Section>(
         configureCell: { _, tableView, index, item in
             let cell = tableView.dequeueReusableCell(withClass: MainCell.self, for: index)
-            cell.setup(with: item)
+            let place = Defaults.selectedLocations[index.row]
+            cell.setup(with: item, place: place)
             return cell
         }
     )
@@ -78,11 +79,15 @@ final class MainViewController: UIViewController {
 
         Defaults.observe(\.selectedLocations)
             .compactMap { $0.newValue }
-            .flatMapLatest { places -> Observable<[Weather]> in
+            .flatMapLatest { places -> Observable<[Weather?]> in
                 let requests = places.map {
-                    API.rx.request(.weatherOfCityName($0.name!))
-                        .map(Weather.self)
+                    API.rx.request(.weatherOfCityName($0.locality ?? $0.subLocality ?? $0.name!))
+                        .map(Weather?.self)
                         .asObservable()
+                        .catch {
+                            print($0)
+                            return .just(nil)
+                        }
                 }
                 return Observable.combineLatest(requests)
             }
@@ -117,6 +122,7 @@ final class MainViewController: UIViewController {
     private func showSettingAlert() {
         let alert = UIAlertController()
 
+        
         present(alert, animated: true)
     }
 }
@@ -128,7 +134,7 @@ extension MainViewController {
     }
 
     struct State {
-        let weathers = BehaviorRelay(value: [Weather]())
+        let weathers = BehaviorRelay(value: [Weather?]())
     }
 }
 
@@ -158,10 +164,16 @@ private final class MainCell: UITableViewCell {
 
     // MARK: Internal
 
-    func setup(with item: MainViewController.Section.Item) {
+    func setup(with item: MainViewController.Section.Item, place: CLPlacemark?) {
+        guard let item = item else {
+            titleLabel.text = place?.name ?? "--"
+            weatherInfo.text = "--"
+            mainInfo.text = "--"
+            return
+        }
         titleLabel.text = item.name
         weatherInfo.text = item.weather
-        mainInfo.text = "\(item.tempMin) ~ \(item.tempMax)"
+        mainInfo.text = "\(item.tempMin) ~ \(item.tempMax)℉"
     }
 
     // MARK: Private

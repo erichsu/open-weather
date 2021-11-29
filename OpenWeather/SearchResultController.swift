@@ -7,6 +7,7 @@
 
 import Contacts
 import RxCocoa
+import RxCoreLocation
 import RxDataSources
 import RxSwift
 import SwiftyUserDefaults
@@ -30,6 +31,7 @@ final class SearchResultController: UISearchController {
         bindInput()
         bindOutput()
     }
+
 
     // MARK: Private
 
@@ -90,6 +92,18 @@ final class SearchResultController: UISearchController {
                 return text
             }
             .bind(to: state.searchText)
+            .disposed(by: bag)
+
+        tableView.rx.modelSelected(Section.Item.self)
+            .filter {
+                guard case .gps = $0 else { return false }
+                return true
+            }
+            .withUnretained(self)
+            .flatMapLatest { `self`, _ in
+                self.placeOfCurrentLocation()
+            }
+            .bind(to: event.placeSelected)
             .disposed(by: bag)
     }
 
@@ -187,6 +201,13 @@ final class SearchResultController: UISearchController {
             return Disposables.create()
         }
     }
+
+    private func placeOfCurrentLocation() -> Observable<CLPlacemark> {
+        let locationManager = CLLocationManager()
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.startUpdatingLocation()
+        return locationManager.rx.placemark
+    }
 }
 
 extension SearchResultController {
@@ -216,7 +237,7 @@ private final class SearchCell: UITableViewCell {
         contentView.addSubviews([titleLabel])
         titleLabel.snp.makeConstraints {
             $0.edges.equalToSuperview().inset(UIEdgeInsets(horizontal: 32, vertical: 0))
-            $0.height.equalTo(44)
+            $0.height.equalTo(44).priority(.medium)
         }
     }
 
