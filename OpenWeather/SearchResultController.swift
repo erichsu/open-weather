@@ -135,7 +135,7 @@ final class SearchResultController: UISearchController {
         let suggestionSection = state.locations
             .withUnretained(self)
             .map { `self`, places in
-                Section(model: "Locations", items: places.map { Item.place($0, self.state.searchText.value) })
+                Section(model: "Suggest Locations", items: places.map { Item.place($0, self.state.searchText.value) })
             }
 
         Observable
