@@ -10,6 +10,7 @@
 		0764FCED27556716000CC593 /* RxCoreLocation in Frameworks */ = {isa = PBXBuildFile; productRef = 0764FCEC27556716000CC593 /* RxCoreLocation */; };
 		0764FCF8275582DE000CC593 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0764FCFA275582DE000CC593 /* InfoPlist.strings */; };
 		0764FCFE275583E1000CC593 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0764FCFD275583E1000CC593 /* Theme.swift */; };
+		0764FD0127558910000CC593 /* ProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = 0764FD0027558910000CC593 /* ProgressHUD */; };
 		078D13872753A4300048D6B5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078D13862753A4300048D6B5 /* AppDelegate.swift */; };
 		078D13892753A4300048D6B5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078D13882753A4300048D6B5 /* SceneDelegate.swift */; };
 		078D138B2753A4300048D6B5 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078D138A2753A4300048D6B5 /* MainViewController.swift */; };
@@ -97,6 +98,7 @@
 				0764FCED27556716000CC593 /* RxCoreLocation in Frameworks */,
 				078D13C12753A8040048D6B5 /* SnapKit in Frameworks */,
 				078D13E32753C07B0048D6B5 /* RxDataSources in Frameworks */,
+				0764FD0127558910000CC593 /* ProgressHUD in Frameworks */,
 				078D13DC2753BAF30048D6B5 /* Then in Frameworks */,
 				078D13E82753ECE10048D6B5 /* RxSwiftExt in Frameworks */,
 				078D13BE2753A78F0048D6B5 /* SwifterSwift in Frameworks */,
@@ -245,6 +247,7 @@
 				078D13E22753C07B0048D6B5 /* RxDataSources */,
 				078D13E72753ECE10048D6B5 /* RxSwiftExt */,
 				0764FCEC27556716000CC593 /* RxCoreLocation */,
+				0764FD0027558910000CC593 /* ProgressHUD */,
 			);
 			productName = OpenWeather;
 			productReference = 078D13832753A4300048D6B5 /* OpenWeather.app */;
@@ -332,6 +335,7 @@
 				078D13DF2753C07B0048D6B5 /* XCRemoteSwiftPackageReference "RxDataSources" */,
 				078D13E62753ECE10048D6B5 /* XCRemoteSwiftPackageReference "RxSwiftExt" */,
 				0764FCEB27556716000CC593 /* XCRemoteSwiftPackageReference "RxCoreLocation" */,
+				0764FCFF27558910000CC593 /* XCRemoteSwiftPackageReference "ProgressHUD" */,
 			);
 			productRefGroup = 078D13842753A4300048D6B5 /* Products */;
 			projectDirPath = "";
@@ -781,6 +785,14 @@
 				kind = branch;
 			};
 		};
+		0764FCFF27558910000CC593 /* XCRemoteSwiftPackageReference "ProgressHUD" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/relatedcode/ProgressHUD";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 13.6.0;
+			};
+		};
 		078D13B62753A6C80048D6B5 /* XCRemoteSwiftPackageReference "MoyaSugar" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/erichsu/MoyaSugar";
@@ -868,6 +880,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 0764FCEB27556716000CC593 /* XCRemoteSwiftPackageReference "RxCoreLocation" */;
 			productName = RxCoreLocation;
+		};
+		0764FD0027558910000CC593 /* ProgressHUD */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0764FCFF27558910000CC593 /* XCRemoteSwiftPackageReference "ProgressHUD" */;
+			productName = ProgressHUD;
 		};
 		078D13B72753A6C80048D6B5 /* MoyaSugar */ = {
 			isa = XCSwiftPackageProductDependency;

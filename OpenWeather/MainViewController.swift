@@ -7,6 +7,7 @@
 
 import Contacts
 import CoreLocation
+import ProgressHUD
 import RxDataSources
 import RxMoya
 import RxRelay
@@ -96,6 +97,8 @@ final class MainViewController: UIViewController {
                         }
                 }
                 return Observable.combineLatest(requests)
+                    .do(onSubscribed: { ProgressHUD.show() })
+                    .do(onDispose: { ProgressHUD.dismiss() })
             }
             .bind(to: state.weathers)
             .disposed(by: bag)
