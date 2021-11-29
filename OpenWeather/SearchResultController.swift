@@ -150,6 +150,9 @@ final class SearchResultController: UISearchController {
     }
 
     private func placesOfZip(_ zip: String) -> Observable<[CLPlacemark]> {
+        guard zip.isDigits else {
+            return .just([])
+        }
         let geoCoder = CLGeocoder()
 
         let address = CNMutablePostalAddress()
