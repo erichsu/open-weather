@@ -7,7 +7,6 @@
 
 import Contacts
 import CoreLocation
-import ProgressHUD
 import RxDataSources
 import RxMoya
 import RxRelay
@@ -51,9 +50,11 @@ final class MainViewController: UIViewController {
         $0.numberOfLines = 0
     }
 
+    private lazy var refreshControl = UIRefreshControl()
     private lazy var tableView = UITableView(frame: .zero, style: .insetGrouped).then {
         $0.register(cellWithClass: MainCell.self)
         $0.backgroundView = placeholder
+        $0.refreshControl = refreshControl
     }
 
     private func setupSubviews() {
@@ -68,14 +69,20 @@ final class MainViewController: UIViewController {
     }
 
     private func bindInput() {
-
         searchController.event.placeSelected
             .bind(to: event.selectedPlace)
             .disposed(by: bag)
 
-        Defaults.observe(\.selectedLocations)
+        let refresh = refreshControl.rx
+            .controlEvent(.valueChanged)
+            .mapTo(Defaults.selectedLocations)
+
+        let newLocations = Defaults.observe(\.selectedLocations)
             .compactMap { $0.newValue }
-            .flatMapLatest { places -> Observable<[Weather?]> in
+
+        Observable
+            .merge(refresh, newLocations)
+            .flatMapLatest { [weak self] places -> Observable<[Weather?]> in
                 let requests = places.map {
                     API.rx.request(.weatherOfCityName($0.locality ?? $0.subLocality ?? $0.name!))
                         .map(Weather?.self)
@@ -86,8 +93,8 @@ final class MainViewController: UIViewController {
                         }
                 }
                 return Observable.combineLatest(requests)
-                    .do(onSubscribed: { ProgressHUD.show() })
-                    .do(onDispose: { ProgressHUD.dismiss() })
+                    .do(onSubscribed: { self?.refreshControl.beginRefreshing() })
+                    .do(onDispose: { self?.refreshControl.endRefreshing() })
             }
             .bind(to: state.weathers)
             .disposed(by: bag)
