@@ -75,7 +75,7 @@ final class MainViewController: UIViewController {
 
         let refresh = refreshControl.rx
             .controlEvent(.valueChanged)
-            .mapTo(Defaults.selectedLocations)
+            .map { Defaults.selectedLocations }
 
         let newLocations = Defaults.observe(\.selectedLocations)
             .compactMap { $0.newValue }

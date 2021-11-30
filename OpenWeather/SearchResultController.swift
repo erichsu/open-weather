@@ -101,6 +101,8 @@ final class SearchResultController: UISearchController {
             .withUnretained(self)
             .flatMapLatest { `self`, _ in
                 self.placeOfCurrentLocation()
+                    .do(onSubscribe: { self.state.isLocating.accept(true) })
+                    .do(afterNext: { _ in self.state.isLocating.accept(false) })
             }
             .bind(to: event.placeSelected)
             .disposed(by: bag)
@@ -123,7 +125,7 @@ final class SearchResultController: UISearchController {
             .bind(to: state.locations)
             .disposed(by: bag)
 
-        let currentLocation = Section(model: "", items: [.gps])
+        let currentLocation = state.isLocating.map { Section(model: "", items: [.gps($0)]) }
         let historySection: Observable<Section?> = Defaults.observe(\.searchRecords)
             .compactMap { $0.newValue }
             .map {
@@ -139,8 +141,8 @@ final class SearchResultController: UISearchController {
             }
 
         Observable
-            .combineLatest(historySection, suggestionSection)
-            .map { [currentLocation, $0, $1].compactMap { $0 } }
+            .combineLatest(currentLocation, historySection, suggestionSection)
+            .map { [$0, $1, $2].compactMap { $0 } }
             .bind(to: tableView.rx.items(dataSource: dataSource))
             .disposed(by: bag)
 
@@ -218,7 +220,7 @@ final class SearchResultController: UISearchController {
 
 extension SearchResultController {
     enum Item {
-        case gps
+        case gps(Bool)
         case history(String)
         case place(CLPlacemark, String)
     }
@@ -230,6 +232,7 @@ extension SearchResultController {
     struct State {
         let searchText = BehaviorRelay(value: "")
         let locations = BehaviorRelay(value: [CLPlacemark]())
+        let isLocating = BehaviorRelay(value: false)
     }
 }
 
@@ -264,9 +267,11 @@ private final class SearchCell: UITableViewCell {
 
     func setup(with item: SearchResultController.Section.Item) {
         switch item {
-        case .gps:
+        case .gps(let isLocating):
             titleLabel.text = "Current Location"
-            accessoryView = UIImageView(image: UIImage(systemName: "location"))
+            accessoryView = isLocating
+                ? UIActivityIndicatorView(style: .medium).then { $0.startAnimating() }
+                : UIImageView(image: UIImage(systemName: "location"))
         case .history(let title):
             titleLabel.text = title
         case .place(let place, let search):
